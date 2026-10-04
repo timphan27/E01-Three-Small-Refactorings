@@ -57,7 +57,6 @@
       let target = null;
       // Pick the living enemy with the greatest CURRENT health.
       for (const enemy of enemies) {
-        // If health is zero, that enemy is not alive.
         if (enemy.health <= 0) {
           continue;
         }
