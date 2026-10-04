@@ -1,19 +1,36 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>B: Auto-targeting</title>
   <style>
-    body { font: 1.1rem system-ui, sans-serif; max-width: 34rem; margin: 3rem auto; padding: 0 1rem; }
-    canvas { max-width: 100%; background: #182337; border-radius: .5rem; }
-    button { font: inherit; padding: .5rem 1rem; }
+    body {
+      font: 1.1rem system-ui, sans-serif;
+      max-width: 34rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    canvas {
+      max-width: 100%;
+      background: #182337;
+      border-radius: .5rem;
+    }
+
+    button {
+      font: inherit;
+      padding: .5rem 1rem;
+    }
   </style>
 </head>
+
 <body>
   <h1>Auto-targeting review</h1>
   <p id="wave" aria-live="polite"></p>
-  <canvas id="field" width="420" height="220" role="img" aria-label="Enemies with health bars; the current target has a gold outline"></canvas>
+  <canvas id="field" width="420" height="220" role="img"
+    aria-label="Enemies with health bars; the current target has a gold outline"></canvas>
   <p id="selection" aria-live="polite"></p>
   <button id="advance" type="button">Next wave</button>
   <script>
@@ -41,15 +58,14 @@
       // Pick the living enemy with the greatest CURRENT health.
       for (const enemy of enemies) {
         // If health is zero, that enemy is not alive.
-        if (enemy.health <= 0)
-        {
+        if (enemy.health <= 0) {
           continue;
         }
-        // Keep the earliest enemy if two have equal health.
-          if (target && target.health > enemy.health) {
-          continue;
-          }
+
+        // Replace the target if there is no target or this enemy has equal or greater health.
+        if (target === null || enemy.health >= target.health) {
           target = enemy;
+        }
       }
       return target;
     }
@@ -87,4 +103,5 @@
     draw();
   </script>
 </body>
+
 </html>
