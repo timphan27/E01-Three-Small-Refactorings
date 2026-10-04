@@ -50,12 +50,15 @@
       { name: "Teal", color: "#248a87" },
     ];
     let currentIndex = 0;
-    //removed let updates_enabled = true;
+
     const label = document.querySelector("#label");
     const swatch = document.querySelector("#swatch");
 
-    function update() { //simplfiied update function bc current index tells us what to display when we access presets
-      const item = presets[currentIndex];
+    function update() {
+      let item = presets[0];
+      for (let i = 0; i < presets.length; i++) {
+        if (i === currentIndex) item = presets[i];
+      }
       label.textContent = item.name;
       swatch.style.backgroundColor = item.color;
     }
